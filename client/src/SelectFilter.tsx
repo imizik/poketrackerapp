@@ -26,7 +26,7 @@ export const SelectFilter = (props: Props) => {
         "Dark",
         "Steel",
         "Fairy"
-      ];
+    ];
     const handleSelectedFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         props.setSelectedFilter(event.target.value);
     };

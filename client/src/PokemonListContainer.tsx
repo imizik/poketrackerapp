@@ -6,16 +6,23 @@ import { pokemonData } from "./data/pokemon";
 type Props = {};
 
 export const PokemonListContainer = (props: Props) => {
-  const [caughtList, setCaughtList] = useState({});
+  const [caughtList, setCaughtList] = useState(
+    JSON.parse(localStorage.getItem("caughtList") || "{}")
+  );
   const [total, setTotal] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedFilter1, setSelectedFilter1] = useState("");
   const [selectedFilter2, setSelectedFilter2] = useState("");
   const [filteredPokemonList, setFilteredPokemonList] = useState(pokemonData);
+  const [caughtCount, setCaughtCount] = useState(0);
 
   const handleSearchQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
   };
+
+  useEffect(() => {
+    localStorage.setItem("caughtList", JSON.stringify(caughtList));
+  }, [caughtList]);
 
   useEffect(() => {
     const filteredList = pokemonData.filter((pokemon) => {
@@ -26,7 +33,8 @@ export const PokemonListContainer = (props: Props) => {
       return (nameMatch || dexNumberMatch) && type1Match && type2Match;
     });
     setFilteredPokemonList(filteredList);
-  }, [searchQuery, selectedFilter1, selectedFilter2]);
+    setCaughtCount(filteredList.filter((pokemon) => caughtList.hasOwnProperty(pokemon.dex_number.toString())).length);
+  }, [searchQuery, selectedFilter1, selectedFilter2, caughtList]);
 
   return (
     <div>
@@ -67,10 +75,10 @@ export const PokemonListContainer = (props: Props) => {
         </div>
       </div>
       <p>
-        You have caught <strong>X</strong> out of <strong>{total}</strong>, or{" "}
-        <strong>~X%</strong>
+        You have caught <strong>{caughtCount}</strong> out of <strong>{filteredPokemonList.length}</strong>, or{" "}
+        <strong>~{Math.round(caughtCount / filteredPokemonList.length * 100)}%</strong>
       </p>
-      <PokeList setTotal={setTotal} total={total} pokemonList={filteredPokemonList} />
+      <PokeList caughtList={caughtList} setCaughtList={setCaughtList} setTotal={setTotal} total={total} pokemonList={filteredPokemonList} />
     </div>
   );
 };
