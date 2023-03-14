@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { AppHeader } from "./AppHeader";
-import { PokemonListContainer } from "./PokemonListContainer";
+import { PokemonListContainer } from "./components/PokemonListContainer";
 
 function App() {
   return (

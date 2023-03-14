@@ -1,6 +1,6 @@
 import React from "react";
 import PokeBallIcon from "./PokeBallIcon";
-import styles from './styles/pokemon-types.module.css';
+import styles from '../styles/pokemon-types.module.css';
 
 interface Pokemon {
     name: string;

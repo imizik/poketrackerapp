@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { PokeList } from "./PokeList";
 import { SelectFilter } from "./SelectFilter";
-import { pokemonData } from "./data/pokemon";
+import { pokemonData } from "../data/pokemon";
 
 type Props = {};
 
