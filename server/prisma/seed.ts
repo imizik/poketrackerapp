@@ -36,12 +36,14 @@ async function main() {
       first_name: "Samuel",
       last_name: "Oak",
       password: "pokemon4eva1996!",
+      isAdmin: true
     },
     update: {
       email: "samuelOak@pallettownlab.com",
       first_name: "Samuel",
       last_name: "Oak",
       password: "pokemon4eva1996!",
+      isAdmin: true
     },
   });
 }

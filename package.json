@@ -11,5 +11,8 @@
     "start:studio": "cd server && npm run start:studio",
     "migrate-db": "cd server && npm run migrate-db",
     "seed-db": "cd server && npm run seed-db"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.0"
   }
 }
